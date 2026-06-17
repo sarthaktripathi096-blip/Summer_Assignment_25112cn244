@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class IntersectionOfArrays {
+    public static int[] intersection(int[] arr1, int[] arr2) {
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> intersectionSet = new HashSet<>();
+        
+        // Add all elements from first array to set1
+        for (int num : arr1) {
+            set1.add(num);
+        }
+        
+        // Check if elements from arr2 exist in set1
+        for (int num : arr2) {
+            if (set1.contains(num)) {
+                intersectionSet.add(num);
+            }
+        }
+        
+        // Convert intersection set to array
+        int[] intersectionArr = new int[intersectionSet.size()];
+        int i = 0;
+        for (int num : intersectionSet) {
+            intersectionArr[i++] = num;
+        }
+        
+        return intersectionArr;
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = {1, 3, 5, 7, 9};
+        int[] arr2 = {2, 3, 5, 8, 9};
+        
+        int[] result = intersection(arr1, arr2);
+        
+        System.out.println("Intersection of arrays:");
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
+    }
+}
