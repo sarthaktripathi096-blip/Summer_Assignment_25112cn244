@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class FindCommonElements {
+    public static int[] findCommon(int[] arr1, int[] arr2) {
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> commonSet = new HashSet<>();
+        
+        // Add all elements from first array to set1
+        for (int num : arr1) {
+            set1.add(num);
+        }
+        
+        // Find common elements
+        for (int num : arr2) {
+            if (set1.contains(num)) {
+                commonSet.add(num);
+            }
+        }
+        
+        // Convert common set to array
+        int[] commonArr = new int[commonSet.size()];
+        int i = 0;
+        for (int num : commonSet) {
+            commonArr[i++] = num;
+        }
+        
+        return commonArr;
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = {1, 3, 5, 7, 9};
+        int[] arr2 = {2, 3, 5, 8, 9};
+        
+        int[] result = findCommon(arr1, arr2);
+        
+        System.out.println("Common elements:");
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
+    }
+}
