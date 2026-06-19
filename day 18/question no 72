@@ -1,0 +1,27 @@
+import java.util.Arrays;
+
+public class SortDescending {
+    
+    // Method to sort array in descending order
+    static void sortDescending(int[] arr) {
+        // Sort in ascending order first
+        Arrays.sort(arr);
+        
+        // Then reverse the array
+        for (int i = 0; i < arr.length / 2; i++) {
+            int temp = arr[i];
+            arr[i] = arr[arr.length - 1 - i];
+            arr[arr.length - 1 - i] = temp;
+        }
+    }
+    
+    // Main method
+    public static void main(String[] args) {
+        // Test with a sample array
+        int[] numbers = {64, 34, 25, 12, 22, 11, 90};
+        
+        System.out.println("Original array: " + Arrays.toString(numbers));
+        sortDescending(numbers);
+        System.out.println("Sorted (descending): " + Arrays.toString(numbers));
+    }
+}
