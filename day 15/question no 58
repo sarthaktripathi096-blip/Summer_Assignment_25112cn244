@@ -1,0 +1,27 @@
+public class RotateArrayLeft {
+    public static void main(String[] args) {
+        // Create an array
+        int[] arr = {1, 2, 3, 4, 5};
+        
+        // Print original array
+        System.out.print("Original array: ");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        
+        // Rotate left by 1 position
+        int first = arr[0];  // Store the first element
+        
+        for (int i = 0; i < arr.length - 1; i++) {
+            arr[i] = arr[i + 1];  // Shift each element to the left
+        }
+        
+        arr[arr.length - 1] = first;  // Put the first element at the end
+        
+        // Print rotated array
+        System.out.print("\nRotated left: ");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
