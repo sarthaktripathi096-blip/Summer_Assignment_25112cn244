@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class WordCount {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input
+        Scanner scanner = new Scanner(System.in);
+        
+        // Ask the user to enter a sentence
+        System.out.print("Enter a sentence: ");
+        String sentence = scanner.nextLine();
+        
+        // Remove leading and trailing spaces
+        sentence = sentence.trim();
+        
+        // Check if the sentence is empty
+        if (sentence.isEmpty()) {
+            System.out.println("Number of words: 0");
+        } else {
+            // Split the sentence by spaces to get words
+            String[] words = sentence.split("\\s+");
+            
+            // Count the words
+            int count = words.length;
+            
+            // Display the result
+            System.out.println("Number of words: " + count);
+        }
+        
+        // Close the scanner
+        scanner.close();
+    }
+}
