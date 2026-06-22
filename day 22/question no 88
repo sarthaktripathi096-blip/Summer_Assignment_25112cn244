@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class RemoveSpaces {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input
+        Scanner scanner = new Scanner(System.in);
+        
+        // Ask the user to enter a string
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+        
+        // Remove all spaces from the string
+        String result = input.replaceAll("\\s+", "");
+        
+        // Display the result
+        System.out.println("\nOriginal string: " + input);
+        System.out.println("After removing spaces: " + result);
+        
+        // Close the scanner
+        scanner.close();
+    }
+}
