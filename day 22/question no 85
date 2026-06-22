@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class PalindromeCheck {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input
+        Scanner scanner = new Scanner(System.in);
+        
+        // Ask the user to enter a string
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+        
+        // Remove spaces and convert to lowercase for better comparison
+        String cleaned = input.replaceAll("\\s+", "").toLowerCase();
+        
+        // Create a variable to store the reversed string
+        String reversed = "";
+        
+        // Reverse the string
+        for (int i = cleaned.length() - 1; i >= 0; i--) {
+            reversed += cleaned.charAt(i);
+        }
+        
+        // Check if the original string equals the reversed string
+        if (cleaned.equals(reversed)) {
+            System.out.println("\"" + input + "\" is a palindrome!");
+        } else {
+            System.out.println("\"" + input + "\" is not a palindrome.");
+        }
+        
+        // Close the scanner
+        scanner.close();
+    }
+}
