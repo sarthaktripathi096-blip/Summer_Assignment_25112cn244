@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class QuizApplication {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int score = 0;
+        String answer;
+
+        System.out.println("Welcome to the Quiz Application!");
+        System.out.println("Answer the following questions by typing a, b, c, or d.\n");
+
+        System.out.println("1. Which language is used for Android app development?");
+        System.out.println("a) Python");
+        System.out.println("b) Java");
+        System.out.println("c) C");
+        System.out.println("d) HTML");
+        System.out.print("Your answer: ");
+        answer = sc.nextLine();
+        if (answer.equalsIgnoreCase("b")) {
+            score++;
+        }
+
+        System.out.println("\n2. Which is the largest planet in our solar system?");
+        System.out.println("a) Earth");
+        System.out.println("b) Mars");
+        System.out.println("c) Jupiter");
+        System.out.println("d) Venus");
+        System.out.print("Your answer: ");
+        answer = sc.nextLine();
+        if (answer.equalsIgnoreCase("c")) {
+            score++;
+        }
+
+        System.out.println("\n3. How many sides does a triangle have?");
+        System.out.println("a) 2");
+        System.out.println("b) 3");
+        System.out.println("c) 4");
+        System.out.println("d) 5");
+        System.out.print("Your answer: ");
+        answer = sc.nextLine();
+        if (answer.equalsIgnoreCase("b")) {
+            score++;
+        }
+
+        System.out.println("\nQuiz completed!");
+        System.out.println("Your score is: " + score + "/3");
+
+        sc.close();
+    }
+}
