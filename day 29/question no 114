@@ -1,0 +1,118 @@
+import java.util.Scanner;
+
+public class ArrayOperations {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter size of array: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        System.out.println("Enter " + n + " elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        while (true) {
+            System.out.println("\n--- Array Operations Menu ---");
+            System.out.println("1. Display Array");
+            System.out.println("2. Search Element");
+            System.out.println("3. Find Largest");
+            System.out.println("4. Find Smallest");
+            System.out.println("5. Sort Array");
+            System.out.println("6. Exit");
+            System.out.print("Enter choice: ");
+
+            int choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    display(arr);
+                    break;
+                case 2:
+                    search(arr, sc);
+                    break;
+                case 3:
+                    largest(arr);
+                    break;
+                case 4:
+                    smallest(arr);
+                    break;
+                case 5:
+                    sort(arr);
+                    break;
+                case 6:
+                    System.out.println("Program ended.");
+                    sc.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+    static void display(int[] arr) {
+        System.out.print("Array elements: ");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    static void search(int[] arr, Scanner sc) {
+        System.out.print("Enter element to search: ");
+        int key = sc.nextInt();
+        boolean found = false;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == key) {
+                System.out.println("Element found at index " + i);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Element not found.");
+        }
+    }
+
+    static void largest(int[] arr) {
+        int max = arr[0];
+        for (int num : arr) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        System.out.println("Largest element: " + max);
+    }
+
+    static void smallest(int[] arr) {
+        int min = arr[0];
+        for (int num : arr) {
+            if (num < min) {
+                min = num;
+            }
+        }
+        System.out.println("Smallest element: " + min);
+    }
+
+    static void sort(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+
+        System.out.print("Sorted array: ");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+}
