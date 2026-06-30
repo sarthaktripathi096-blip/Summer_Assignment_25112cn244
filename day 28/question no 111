@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+public class TicketBookingSystem {
+    static int totalSeats = 10;
+    static int bookedSeats = 0;
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("\n--- Ticket Booking System ---");
+            System.out.println("1. Book Ticket");
+            System.out.println("2. Cancel Ticket");
+            System.out.println("3. Check Available Seats");
+            System.out.println("4. Exit");
+            System.out.print("Enter choice: ");
+
+            int choice = sc.nextInt();
+
+            switch (choice) {
+                case 1 -> bookTicket();
+                case 2 -> cancelTicket();
+                case 3 -> checkSeats();
+                case 4 -> {
+                    System.out.println("Program ended.");
+                    return;
+                }
+                default -> System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+    static void bookTicket() {
+        System.out.print("Enter number of tickets to book: ");
+        int tickets = sc.nextInt();
+
+        if (tickets <= 0) {
+            System.out.println("Invalid number.");
+        } else if (bookedSeats + tickets <= totalSeats) {
+            bookedSeats += tickets;
+            System.out.println("Ticket(s) booked successfully.");
+        } else {
+            System.out.println("Not enough seats available.");
+        }
+    }
+
+    static void cancelTicket() {
+        System.out.print("Enter number of tickets to cancel: ");
+        int tickets = sc.nextInt();
+
+        if (tickets <= 0) {
+            System.out.println("Invalid number.");
+        } else if (tickets <= bookedSeats) {
+            bookedSeats -= tickets;
+            System.out.println("Ticket(s) cancelled successfully.");
+        } else {
+            System.out.println("You cannot cancel more than booked tickets.");
+        }
+    }
+
+    static void checkSeats() {
+        System.out.println("Total Seats: " + totalSeats);
+        System.out.println("Booked Seats: " + bookedSeats);
+        System.out.println("Available Seats: " + (totalSeats - bookedSeats));
+    }
+}
