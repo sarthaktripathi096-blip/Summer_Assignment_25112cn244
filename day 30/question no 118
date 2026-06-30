@@ -1,0 +1,90 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MiniLibrarySystem {
+    static ArrayList<Book> books = new ArrayList<>();
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("\n--- Mini Library System ---");
+            System.out.println("1. Add Book");
+            System.out.println("2. Show All Books");
+            System.out.println("3. Search Book by ID");
+            System.out.println("4. Delete Book");
+            System.out.println("5. Exit");
+            System.out.print("Enter choice: ");
+
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+                case 1 -> addBook();
+                case 2 -> showBooks();
+                case 3 -> searchBook();
+                case 4 -> deleteBook();
+                case 5 -> {
+                    System.out.println("Program ended.");
+                    return;
+                }
+                default -> System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+    static void addBook() {
+        System.out.print("Enter Book ID: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter Book Title: ");
+        String title = sc.nextLine();
+
+        System.out.print("Enter Author Name: ");
+        String author = sc.nextLine();
+
+        books.add(new Book(id, title, author));
+        System.out.println("Book added successfully.");
+    }
+
+    static void showBooks() {
+        if (books.isEmpty()) {
+            System.out.println("No books available.");
+            return;
+        }
+
+        for (Book b : books) {
+            System.out.println(b);
+        }
+    }
+
+    static void searchBook() {
+        System.out.print("Enter Book ID to search: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        for (Book b : books) {
+            if (b.getId() == id) {
+                System.out.println("Book Found:");
+                System.out.println(b);
+                return;
+            }
+        }
+        System.out.println("Book not found.");
+    }
+
+    static void deleteBook() {
+        System.out.print("Enter Book ID to delete: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        for (Book b : books) {
+            if (b.getId() == id) {
+                books.remove(b);
+                System.out.println("Book deleted successfully.");
+                return;
+            }
+        }
+        System.out.println("Book not found.");
+    }
+}
