@@ -1,0 +1,112 @@
+import java.util.Scanner;
+
+public class StudentRecordSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of students: ");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        int[] roll = new int[n];
+        String[] name = new String[n];
+        String[] studentClass = new String[n];
+        int[] marks = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nEnter details for student " + (i + 1));
+
+            System.out.print("Enter roll number: ");
+            roll[i] = sc.nextInt();
+            sc.nextLine();
+
+            System.out.print("Enter name: ");
+            name[i] = sc.nextLine();
+
+            System.out.print("Enter class: ");
+            studentClass[i] = sc.nextLine();
+
+            System.out.print("Enter marks: ");
+            marks[i] = sc.nextInt();
+            sc.nextLine();
+        }
+
+        while (true) {
+            System.out.println("\n--- Student Record Menu ---");
+            System.out.println("1. Display All Records");
+            System.out.println("2. Search Student by Roll Number");
+            System.out.println("3. Find Highest Marks");
+            System.out.println("4. Exit");
+            System.out.print("Enter choice: ");
+
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+                case 1:
+                    displayAll(n, roll, name, studentClass, marks);
+                    break;
+
+                case 2:
+                    searchStudent(sc, n, roll, name, studentClass, marks);
+                    break;
+
+                case 3:
+                    highestMarks(n, roll, name, marks);
+                    break;
+
+                case 4:
+                    System.out.println("Program ended.");
+                    sc.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+    static void displayAll(int n, int[] roll, String[] name, String[] studentClass, int[] marks) {
+        System.out.println("\n--- Student Records ---");
+        for (int i = 0; i < n; i++) {
+            System.out.println("Roll No: " + roll[i]);
+            System.out.println("Name: " + name[i]);
+            System.out.println("Class: " + studentClass[i]);
+            System.out.println("Marks: " + marks[i]);
+            System.out.println("-------------------");
+        }
+    }
+
+    static void searchStudent(Scanner sc, int n, int[] roll, String[] name, String[] studentClass, int[] marks) {
+        System.out.print("Enter roll number to search: ");
+        int searchRoll = sc.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            if (roll[i] == searchRoll) {
+                System.out.println("\nStudent Found:");
+                System.out.println("Roll No: " + roll[i]);
+                System.out.println("Name: " + name[i]);
+                System.out.println("Class: " + studentClass[i]);
+                System.out.println("Marks: " + marks[i]);
+                return;
+            }
+        }
+
+        System.out.println("Student not found.");
+    }
+
+    static void highestMarks(int n, int[] roll, String[] name, int[] marks) {
+        int maxIndex = 0;
+
+        for (int i = 1; i < n; i++) {
+            if (marks[i] > marks[maxIndex]) {
+                maxIndex = i;
+            }
+        }
+
+        System.out.println("\nStudent with highest marks:");
+        System.out.println("Roll No: " + roll[maxIndex]);
+        System.out.println("Name: " + name[maxIndex]);
+        System.out.println("Marks: " + marks[maxIndex]);
+    }
+}
