@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class StringOperations {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter first string: ");
+        String str1 = sc.nextLine();
+
+        System.out.print("Enter second string: ");
+        String str2 = sc.nextLine();
+
+        while (true) {
+            System.out.println("\n--- String Operations Menu ---");
+            System.out.println("1. Concatenate Strings");
+            System.out.println("2. Find Length of First String");
+            System.out.println("3. Convert First String to Uppercase");
+            System.out.println("4. Convert First String to Lowercase");
+            System.out.println("5. Compare Two Strings");
+            System.out.println("6. Exit");
+            System.out.print("Enter choice: ");
+
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Concatenated String: " + str1 + str2);
+                    break;
+                case 2:
+                    System.out.println("Length of first string: " + str1.length());
+                    break;
+                case 3:
+                    System.out.println("Uppercase: " + str1.toUpperCase());
+                    break;
+                case 4:
+                    System.out.println("Lowercase: " + str1.toLowerCase());
+                    break;
+                case 5:
+                    if (str1.equals(str2)) {
+                        System.out.println("Both strings are equal.");
+                    } else {
+                        System.out.println("Strings are different.");
+                    }
+                    break;
+                case 6:
+                    System.out.println("Program ended.");
+                    sc.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+    }
+}
