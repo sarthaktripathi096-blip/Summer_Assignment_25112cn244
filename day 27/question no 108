@@ -1,0 +1,83 @@
+import java.util.Scanner;
+
+class Student {
+    String name;
+    int rollNo;
+    String className;
+
+    void getStudentData(Scanner sc) {
+        System.out.print("Enter student name: ");
+        name = sc.nextLine();
+
+        System.out.print("Enter roll number: ");
+        rollNo = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter class: ");
+        className = sc.nextLine();
+    }
+}
+
+class Marks extends Student {
+    int[] marks = new int[5];
+    String[] subjects = new String[5];
+
+    void getMarks(Scanner sc) {
+        for (int i = 0; i < 5; i++) {
+            System.out.print("Enter subject " + (i + 1) + " name: ");
+            subjects[i] = sc.nextLine();
+
+            System.out.print("Enter marks for " + subjects[i] + ": ");
+            marks[i] = sc.nextInt();
+            sc.nextLine();
+        }
+    }
+}
+
+public class Marksheet extends Marks {
+    int total = 0;
+    double percentage;
+
+    void calculate() {
+        for (int m : marks) {
+            total += m;
+        }
+        percentage = total / 5.0;
+    }
+
+    String getGrade() {
+        if (percentage >= 90) return "A+";
+        else if (percentage >= 80) return "A";
+        else if (percentage >= 70) return "B";
+        else if (percentage >= 60) return "C";
+        else if (percentage >= 50) return "D";
+        else return "Fail";
+    }
+
+    void displayMarksheet() {
+        System.out.println("\n----- Marksheet -----");
+        System.out.println("Name: " + name);
+        System.out.println("Roll No: " + rollNo);
+        System.out.println("Class: " + className);
+
+        for (int i = 0; i < 5; i++) {
+            System.out.println(subjects[i] + ": " + marks[i]);
+        }
+
+        System.out.println("Total: " + total + "/500");
+        System.out.println("Percentage: " + percentage + "%");
+        System.out.println("Grade: " + getGrade());
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Marksheet s = new Marksheet();
+
+        s.getStudentData(sc);
+        s.getMarks(sc);
+        s.calculate();
+        s.displayMarksheet();
+
+        sc.close();
+    }
+}
