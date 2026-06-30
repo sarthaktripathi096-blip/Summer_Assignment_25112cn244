@@ -1,0 +1,104 @@
+import java.util.Scanner;
+
+public class MiniProject {
+    static String[] names = new String[100];
+    static int[] marks = new int[100];
+    static int count = 0;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n--- Mini Project Menu ---");
+            System.out.println("1. Add Student");
+            System.out.println("2. Display All Students");
+            System.out.println("3. Search Student by Name");
+            System.out.println("4. Show Average Marks");
+            System.out.println("5. Exit");
+            System.out.print("Enter choice: ");
+
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+                case 1:
+                    addStudent(sc);
+                    break;
+                case 2:
+                    displayStudents();
+                    break;
+                case 3:
+                    searchStudent(sc);
+                    break;
+                case 4:
+                    showAverage();
+                    break;
+                case 5:
+                    System.out.println("Program ended.");
+                    sc.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+    static void addStudent(Scanner sc) {
+        if (count >= names.length) {
+            System.out.println("Array is full.");
+            return;
+        }
+
+        System.out.print("Enter student name: ");
+        names[count] = sc.nextLine();
+
+        System.out.print("Enter marks: ");
+        marks[count] = sc.nextInt();
+        sc.nextLine();
+
+        count++;
+        System.out.println("Student added successfully.");
+    }
+
+    static void displayStudents() {
+        if (count == 0) {
+            System.out.println("No students found.");
+            return;
+        }
+
+        System.out.println("\n--- Student Records ---");
+        for (int i = 0; i < count; i++) {
+            System.out.println("Name: " + names[i] + ", Marks: " + marks[i]);
+        }
+    }
+
+    static void searchStudent(Scanner sc) {
+        System.out.print("Enter name to search: ");
+        String searchName = sc.nextLine();
+
+        for (int i = 0; i < count; i++) {
+            if (names[i].equalsIgnoreCase(searchName)) {
+                System.out.println("Student Found:");
+                System.out.println("Name: " + names[i] + ", Marks: " + marks[i]);
+                return;
+            }
+        }
+
+        System.out.println("Student not found.");
+    }
+
+    static void showAverage() {
+        if (count == 0) {
+            System.out.println("No students found.");
+            return;
+        }
+
+        int sum = 0;
+        for (int i = 0; i < count; i++) {
+            sum += marks[i];
+        }
+
+        double avg = (double) sum / count;
+        System.out.println("Average Marks: " + avg);
+    }
+}
