@@ -1,0 +1,124 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class InventoryManagementSystem {
+    static ArrayList<Product> products = new ArrayList<>();
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("\n--- Inventory Management System ---");
+            System.out.println("1. Add Product");
+            System.out.println("2. View Products");
+            System.out.println("3. Search Product");
+            System.out.println("4. Update Quantity");
+            System.out.println("5. Delete Product");
+            System.out.println("6. Total Inventory Value");
+            System.out.println("7. Exit");
+            System.out.print("Enter choice: ");
+
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+                case 1 -> addProduct();
+                case 2 -> viewProducts();
+                case 3 -> searchProduct();
+                case 4 -> updateQuantity();
+                case 5 -> deleteProduct();
+                case 6 -> totalInventoryValue();
+                case 7 -> {
+                    System.out.println("Program ended.");
+                    return;
+                }
+                default -> System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+    static void addProduct() {
+        System.out.print("Enter Product ID: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter Product Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Quantity: ");
+        int quantity = sc.nextInt();
+
+        System.out.print("Enter Price: ");
+        double price = sc.nextDouble();
+        sc.nextLine();
+
+        products.add(new Product(id, name, quantity, price));
+        System.out.println("Product added successfully.");
+    }
+
+    static void viewProducts() {
+        if (products.isEmpty()) {
+            System.out.println("No products found.");
+            return;
+        }
+
+        for (Product p : products) {
+            System.out.println(p);
+        }
+    }
+
+    static void searchProduct() {
+        System.out.print("Enter Product ID to search: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        for (Product p : products) {
+            if (p.getId() == id) {
+                System.out.println("Product Found:");
+                System.out.println(p);
+                return;
+            }
+        }
+        System.out.println("Product not found.");
+    }
+
+    static void updateQuantity() {
+        System.out.print("Enter Product ID to update: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        for (Product p : products) {
+            if (p.getId() == id) {
+                System.out.print("Enter new quantity: ");
+                int quantity = sc.nextInt();
+                sc.nextLine();
+                p.setQuantity(quantity);
+                System.out.println("Quantity updated successfully.");
+                return;
+            }
+        }
+        System.out.println("Product not found.");
+    }
+
+    static void deleteProduct() {
+        System.out.print("Enter Product ID to delete: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        for (Product p : products) {
+            if (p.getId() == id) {
+                products.remove(p);
+                System.out.println("Product deleted successfully.");
+                return;
+            }
+        }
+        System.out.println("Product not found.");
+    }
+
+    static void totalInventoryValue() {
+        double total = 0;
+        for (Product p : products) {
+            total += p.getTotalValue();
+        }
+        System.out.println("Total Inventory Value: " + total);
+    }
+}
